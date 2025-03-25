@@ -20,12 +20,15 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
-      - name: Build with Gradle
-        run: ./gradlew build
+      - name: Build with Maven
+        run:  mvn compile
 
       - name: Run tests
-        run: ./gradlew test
-
+        run:  mvn test
+        
+      - name: Run package
+        run:  mvn clean package
+        
       - name: Build Docker image
         run: |
           docker build -t ${{ secrets.DOCKER_USERNAME }}/ekart-app:${{ github.sha }} .
