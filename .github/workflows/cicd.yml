@@ -21,11 +21,8 @@ jobs:
           java-version: '17'
 
       - name: Build with Maven
-        run:  mvn compile
-        
-      - name: Run package
         run:  mvn clean package
-        
+               
       - name: Build Docker image
         run: |
           docker build -t ${{ secrets.DOCKER_USERNAME }}/ekart-app:${{ github.sha }} .
